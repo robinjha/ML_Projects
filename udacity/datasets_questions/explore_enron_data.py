@@ -24,6 +24,7 @@ salary_count = 0
 email_count = 0
 total_payment_na = 0
 total_na = 0
+total_poi = 0
 for k,v in enron_data.iteritems():
 	if enron_data[k]["salary"]!='NaN':
 		salary_count = salary_count + 1
@@ -32,9 +33,10 @@ for k,v in enron_data.iteritems():
 	if enron_data[k]['poi'] == 'true':
 		if enron_data[k]['total_payments']=='NaN':
 			total_payment_na = total_payment_na +1
+		total_poi = total_poi + 1	
 	if enron_data[k]['total_payments']=='NaN':
                  total_na = total_na +1
-print ("Total Number : %d Total NA: %d"%(len(enron_data.keys()),total_na))
+print ("Total Number : %d Total NA: %d Total POI : %d"%(len(enron_data.keys()),total_na, total_poi))
 print("Salary Count:  %d \t Email Count: %d \t Total NaN : %d \t Percentage : %.2f)" %(salary_count, email_count, total_payment_na, total_payment_na/len(enron_data.keys())))
 num_lines = sum(1 for line in open('../final_project/poi_names.txt'))
 print(enron_data["SKILLING JEFFREY K"])
