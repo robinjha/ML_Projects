@@ -23,15 +23,18 @@ print("Data: %d" %len(enron_data["GLISAN JR BEN F"].keys()))
 salary_count = 0
 email_count = 0
 total_payment_na = 0
-
+total_na = 0
 for k,v in enron_data.iteritems():
 	if enron_data[k]["salary"]!='NaN':
 		salary_count = salary_count + 1
 	if enron_data[k]['email_address']!='NaN':
 		email_count = email_count + 1
+	if enron_data[k]['poi'] == 'true':
+		if enron_data[k]['total_payments']=='NaN':
+			total_payment_na = total_payment_na +1
 	if enron_data[k]['total_payments']=='NaN':
-		total_payment_na = total_payment_na +1
-print ("Total Number : %d"%len( enron_data.keys()))
+                 total_na = total_na +1
+print ("Total Number : %d Total NA: %d"%(len(enron_data.keys()),total_na))
 print("Salary Count:  %d \t Email Count: %d \t Total NaN : %d \t Percentage : %.2f)" %(salary_count, email_count, total_payment_na, total_payment_na/len(enron_data.keys())))
 num_lines = sum(1 for line in open('../final_project/poi_names.txt'))
 print(enron_data["SKILLING JEFFREY K"])
